@@ -1,22 +1,213 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #4a6da7;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.2);
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: #4a6da7;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 60px;
+    background-color: #4a6da7;
+}
+
+h2 {
+    color: #5a5a5a;
+    margin-top: 1.5rem;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid #4a6da7;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #4a6da7;
+    box-shadow: 0 0 0 2px rgba(74, 109, 167, 0.2);
+}
+
+button, .button {
+    background-color: #4a6da7;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    display: inline-block;
+    text-decoration: none;
+}
+
+button:hover, .button:hover {
+    background-color: #3a5d97;
+}
+
 .error-message {
-    background-color: #ffdddd;
-    color: #f44336;
+    background-color: #fff8f8;
+    color: #e53935;
     padding: 1rem;
     margin-bottom: 1.5rem;
     border-radius: 4px;
+    border-left: 4px solid #e53935;
+}
+
+.success-message {
+    background-color: #f0f9f0;
+    color: #388e3c;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    border-left: 4px solid #388e3c;
 }
 
 .result-container {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
 .result-box {
-    background-color: #f8f8f8;
+    background-color: #f8f9fa;
     padding: 1.5rem;
     border-radius: 4px;
     margin: 1.5rem 0;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid #4a6da7;
 }
+
+footer {
+    background-color: #f1f3f6;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid #e6e9ed;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        margin-bottom: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .features {
+        flex-direction: column;
+    }
+}
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.file-upload:hover {
+    background-color: #f1f3f6;
