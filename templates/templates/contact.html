@@ -1,1 +1,38 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">首頁</a>
+            <a href="/about">關於</a>
+            <a href="/contact">聯繫我們</a>
+        </nav>
+    </header>
+    <main>
+        <h1>聯繫我們</h1>
+        <p>如果您有任何問題或需要幫助，請填寫以下表單：</p>
+        <form method="post" action="{{ url_for('contact') }}">
+            <div class="form-group">
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">電子郵件：</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">訊息：</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">發送</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 療癒聲明檢測器</p>
+    </footer>
+</body>
+</html>
