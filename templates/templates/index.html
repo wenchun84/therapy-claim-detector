@@ -1,4 +1,3 @@
-cat > templates/index.html << 'EOL'
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +9,25 @@ cat > templates/index.html << 'EOL'
         <nav>
             <a href="/">首頁</a>
             <a href="/about">關於</a>
+            <a href="/contact">聯繫我們</a>
         </nav>
     </header>
     <main>
-        <h1>歡迎來到我的網站！</h1>
-        <p>這是一個使用Flask框架建立的網站。</p>
+        <h1>歡迎來到療癒聲明檢測器</h1>
+        <p>這個網站可以幫助您檢測療癒聲明的合法性。</p>
+        <div class="features">
+            <div class="feature">
+                <h2>快速分析</h2>
+                <p>上傳您的文件，我們將快速分析內容。</p>
+            </div>
+            <div class="feature">
+                <h2>專業建議</h2>
+                <p>獲取針對您的聲明的專業建議和改進意見。</p>
+            </div>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2025 我的Flask網站</p>
+        <p>&copy; 2025 療癒聲明檢測器</p>
     </footer>
 </body>
 </html>
-EOL
