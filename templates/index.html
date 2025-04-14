@@ -4,6 +4,17 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('fileName');
+            if(fileInput.files.length > 0) {
+                fileNameDisplay.textContent = "已選擇檔案: " + fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "";
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -15,21 +26,23 @@
         </nav>
     </header>
     <main>
-        <h1>歡迎來到療癒聲明檢測器</h1>
-        <p>這個網站可以幫助您檢測療癒聲明的合法性，確保您的產品或服務符合相關法規要求。</p>
+        <h1>上傳文件進行檢測</h1>
+        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
         
-        <div class="features">
-            <div class="feature">
-                <h2>快速分析</h2>
-                <p>上傳您的文件，我們將快速分析內容，檢測可能存在的問題。</p>
-                <a href="/upload" class="button">開始檢測</a>
-            </div>
-            <div class="feature">
-                <h2>專業建議</h2>
-                <p>獲取針對您聲明的專業建議和改進意見，避免潛在的法規風險。</p>
-                <a href="/about" class="button">了解更多</a>
-            </div>
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
         </div>
+        {% endif %}
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="file-upload">
+                <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
+                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
+                <p id="fileName" class="file-name-display"></p>
+            </div>
+            <button type="submit">上傳並分析</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
