@@ -1,1 +1,24 @@
-
+cat > templates/index.html << 'EOL'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">首頁</a>
+            <a href="/about">關於</a>
+        </nav>
+    </header>
+    <main>
+        <h1>歡迎來到我的網站！</h1>
+        <p>這是一個使用Flask框架建立的網站。</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 我的Flask網站</p>
+    </footer>
+</body>
+</html>
+EOL
