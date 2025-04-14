@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html>
-<header>
-    <nav>
-        <a href="/">首頁</a>
-        <a href="/about">關於</a>
-        <a href="/upload">上傳檢測</a>
-        <a href="/contact">聯繫我們</a>
-    </nav>
-</header>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('fileName');
+            if(fileInput.files.length > 0) {
+                fileNameDisplay.textContent = "已選擇檔案: " + fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "";
+            }
+        }
+    </script>
+</head>
 <body>
     <header>
         <nav>
             <a href="/">首頁</a>
             <a href="/about">關於</a>
+            <a href="/upload">上傳檢測</a>
             <a href="/contact">聯繫我們</a>
         </nav>
     </header>
     <main>
-        <h1>謝謝您的訊息，{{ name }}！</h1>
-        <p>我們已收到您的訊息，將會盡快回覆您。</p>
-        <a href="/" class="button">返回首頁</a>
+        <h1>上傳文件進行檢測</h1>
+        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
+        
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="file-upload">
+                <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
+                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
+                <p id="fileName" class="file-name-display"></p>
+            </div>
+            <button type="submit">上傳並分析</button>
+        </form>
     </main>
     <footer>
-        <p>&copy; 2025 療癒聲明檢測器</p>
+        <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
     </footer>
 </body>
 </html>
