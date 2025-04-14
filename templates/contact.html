@@ -3,37 +3,49 @@
 <head>
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('fileName');
+            if(fileInput.files.length > 0) {
+                fileNameDisplay.textContent = "已選擇檔案: " + fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "";
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
-    <nav>
-        <a href="/">首頁</a>
-        <a href="/about">關於</a>
-        <a href="/upload">上傳檢測</a>
-        <a href="/contact">聯繫我們</a>
-    </nav>
-</header>
+        <nav>
+            <a href="/">首頁</a>
+            <a href="/about">關於</a>
+            <a href="/upload">上傳檢測</a>
+            <a href="/contact">聯繫我們</a>
+        </nav>
+    </header>
     <main>
-        <h1>聯繫我們</h1>
-        <p>如果您有任何問題或需要幫助，請填寫以下表單：</p>
-        <form method="post" action="{{ url_for('contact') }}">
-            <div class="form-group">
-                <label for="name">姓名：</label>
-                <input type="text" id="name" name="name" required>
+        <h1>上傳文件進行檢測</h1>
+        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
+        
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="file-upload">
+                <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
+                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
+                <p id="fileName" class="file-name-display"></p>
             </div>
-            <div class="form-group">
-                <label for="email">電子郵件：</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">訊息：</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit">發送</button>
+            <button type="submit">上傳並分析</button>
         </form>
     </main>
     <footer>
-        <p>&copy; 2025 療癒聲明檢測器</p>
+        <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
     </footer>
 </body>
 </html>
