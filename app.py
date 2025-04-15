@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False  # 允許JSON包含非ASCII字符
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -44,10 +45,3 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
-app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False  # 允許JSON包含非ASCII字符
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    ...
-</head>
