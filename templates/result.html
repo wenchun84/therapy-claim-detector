@@ -1,40 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="/">首頁</a>
-            <a href="/about">關於</a>
-            <a href="/upload">上傳檢測</a>
-            <a href="/contact">聯繫我們</a>
-        </nav>
-    </header>
-    <main>
-        <h1>分析結果</h1>
-        <div class="result-container">
-            {% if filename %}
-                <h2>檔案名稱: {{ filename }}</h2>
-            {% elif content %}
-                <h2>輸入文字的分析</h2>
-                <div class="content-box">
-                    <p>{{ content }}</p>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
+        
+        <main>
+            <div class="content-box">
+                <h1>檢測結果</h1>
+                
+                {% if filename %}
+                    <p>檔案名稱：{{ filename }}</p>
+                {% endif %}
+                
+                {% if content %}
+                    <div class="input-content">
+                        <h3>您提交的內容：</h3>
+                        <p>{{ content }}</p>
+                    </div>
+                {% endif %}
+                
+                <div class="result-container">
+                    <p class="result-title">檢測結果：</p>
+                    <p>{{ result }}</p>
+                    
+                    <div class="highlight-words">
+                        <h3>發現的可能違規詞彙：</h3>
+                        <ul>
+                            <li><span class="warning">排除體內毒素</span> - 宣稱排毒效果，違反食品廣告規範</li>
+                            <li><span class="warning">遠離疾病困擾</span> - 暗示預防疾病，涉及醫療效能</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recommendation">
+                        <h3>建議修改：</h3>
+                        <p>避免使用暗示醫療效果的詞彙，如「排毒」、「預防疾病」等。可改為描述產品成分、口感或一般特性。</p>
+                    </div>
                 </div>
-            {% endif %}
-            
-            <div class="result-box">
-                <p>{{ result }}</p>
+                
+                <a href="/" class="check-button">返回檢測頁面</a>
             </div>
-            
-            <a href="/upload" class="button">返回檢測頁面</a>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
-    </footer>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
 </body>
 </html>
