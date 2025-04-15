@@ -16,9 +16,23 @@ def index():
         
         # 處理文字輸入
         if text_input:
-            # 這裡添加文字分析邏輯
-            result = "檢測結果：您的聲明文字中有潛在違規內容。按照《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》，療效相關聲明不應包含「排除體內毒素」、「遠離疾病困擾」等醫療效果宣稱。"
-            return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input)
+    # 違規詞彙列表
+    violation_words = ['治療', '預防', '治癒', '排毒', '醫治', '根治', '防治', '醫療效果', 
+                      '治愈', '防護', '癒合', '消炎', '抑菌', '抗病毒', '抗癌', '保肝', 
+                      '護肝', '改善疾病', '痊癒', '降血壓', '降血糖', '降膽固醇']
+    
+    # 檢查是否含有違規詞彙
+    found_violations = []
+    for word in violation_words:
+        if word in text_input:
+            found_violations.append(word)
+    
+    if found_violations:
+        result = f"檢測結果：您的聲明文字中發現潛在違規內容。按照《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》，以下詞彙可能暗示醫療效果：{', '.join(found_violations)}"
+    else:
+        result = "檢測結果：您的聲明文字未發現明顯違規內容。但請注意，即使未使用明確的醫療用語，某些表述方式仍可能因整體語境而被視為暗示醫療效果。建議謹慎使用療效相關描述。"
+    
+    return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input)
         
         # 處理文件上傳
         if file:
