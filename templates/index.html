@@ -20,14 +20,13 @@
     <header>
         <nav>
             <a href="/">首頁</a>
-            <a href="/about">關於</a>
-            <a href="/upload">上傳檢測</a>
+            <a href="/about">關於我們</a>
             <a href="/contact">聯繫我們</a>
         </nav>
     </header>
     <main>
-        <h1>上傳文件進行檢測</h1>
-        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
+        <h1>聲明檢測</h1>
+        <p>請輸入您想要檢測的療癒聲明文字或上傳文件。</p>
         
         {% if error %}
         <div class="error-message">
@@ -36,13 +35,33 @@
         {% endif %}
         
         <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="text_input">直接輸入或貼上文字：</label>
+                <textarea id="text_input" name="text_input" rows="10" placeholder="請在此輸入您的療癒聲明文字..."></textarea>
+            </div>
+            
+            <div class="separator">
+                <span>或者</span>
+            </div>
+            
             <div class="file-upload">
                 <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
                 <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
                 <p id="fileName" class="file-name-display"></p>
             </div>
-            <button type="submit">上傳並分析</button>
+            <button type="submit" class="analyze-button">分析</button>
         </form>
+        
+        <div class="features">
+            <div class="feature">
+                <h2>快速分析</h2>
+                <p>我們的系統能快速分析您的療癒聲明，檢測可能違反法規的內容。</p>
+            </div>
+            <div class="feature">
+                <h2>專業建議</h2>
+                <p>獲取針對您聲明的專業建議和改進意見，避免潛在的法規風險。</p>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
