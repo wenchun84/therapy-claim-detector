@@ -4,21 +4,7 @@ import os
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False  # 允許JSON包含非ASCII字符
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        text_input = request.form.get('text_input')
-        file = request.files.get('file')
-        
-        # 檢查是否有文字輸入或文件上傳
-        if not text_input and (not file or file.filename == ''):
-            return render_template('index.html', title='文章檢測', active_tab='article', error='請輸入文字或上傳文件')
-        
-        # 處理文字輸入
-        if condition:
-    # This line must be indented (4 spaces)
-    do_something()
-            # 違規詞彙列表 - 擴充自合規指南
+# 違規詞彙列表 - 擴充自合規指南
 violation_words = [
     # 明確違法用字（涉及醫療效能）
     # 1. 宣稱預防、改善、減輕、診斷或治療疾病
@@ -56,6 +42,31 @@ violation_words = [
     '根除', '完全消除', '永久恢復', '徹底解決', '無副作用', '百分百有效',
     '立即見效', '神奇療效'
 ]
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        text_input = request.form.get('text_input')
+        file = request.files.get('file')
+        
+        # 檢查是否有文字輸入或文件上傳
+        if not text_input and (not file or file.filename == ''):
+            return render_template('index.html', title='文章檢測', active_tab='article', error='請輸入文字或上傳文件')
+        
+        # 處理文字輸入
+        if text_input:
+            # 檢查是否含有違規詞彙
+            found_violations = []
+            for word in violation_words:
+                if word in text_input:
+                    found_violations.append(word)
+            
+            if found_violations:
+                result = f"檢測結果：您的聲明文字中發現潛在違規內容。按照《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》，以下詞彙可能暗示醫療效果：{', '.join(found_violations)}"
+                return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input, found_violations=found_violations)
+            else:
+                result = "檢測結果：您的聲明文字未發現明顯違規內容。但請注意，即使未使用明確的醫療用語，某些表述方式仍可能因整體語境而被視為暗示醫療效果。建議謹慎使用療效相關描述。"
+                return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input, found_violations=None)
         
         # 處理文件上傳
         if file:
@@ -77,11 +88,6 @@ def word():
         if not keyword:
             return render_template('word.html', title='單詞檢測', active_tab='word', error='請輸入要檢測的單詞')
         
-        # 違規詞彙列表
-        violation_words = ['治療', '預防', '治癒', '排毒', '醫治', '根治', '防治', '醫療效果', 
-                          '治愈', '防護', '癒合', '消炎', '抑菌', '抗病毒', '抗癌', '保肝', 
-                          '護肝', '改善疾病', '痊癒', '降血壓', '降血糖', '降膽固醇']
-        
         # 檢查是否含有違規詞彙
         is_violation = keyword in violation_words
         
@@ -100,6 +106,73 @@ def stats():
 def examples():
     return render_template('examples.html', title='違規案例', active_tab='examples')
 
+@app.route('/guidelines')
+def guidelines():
+    return render_template('guidelines.html', title='食品廣告合規指南', active_tab='guidelines')
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    query = request.args.get('q', '')
+    results = []
+    
+    if query:
+        # 違法用字
+        illegal_words = {
+            '治療': {'reason': '明示療效', 'alternative': '調節生理機能'},
+            '改善過敏': {'reason': '明示療效', 'alternative': '調整體質'},
+            '防止便秘': {'reason': '明示便秘為病症', 'alternative': '使排便順暢'},
+            '降血壓': {'reason': '明示療效', 'alternative': '調節生理機能'},
+            '清血': {'reason': '明示療效', 'alternative': '促進新陳代謝'},
+            '調整內分泌': {'reason': '明示療效', 'alternative': '調節生理機能'}
+            # 可以從合規指南加入更多詞彙
+        }
+        
+        # 易生誤解詞彙
+        misleading_words = {
+            '增強抵抗力': {'reason': '誇張或易生誤解', 'alternative': '調節生理機能'},
+            '強化細胞功能': {'reason': '誇張或易生誤解', 'alternative': '調節生理機能'}
+            # 可以從合規指南加入更多詞彙
+        }
+        
+        # 合法詞彙
+        legal_words = {
+            '幫助牙齒骨骼正常發育': {'reason': '通常可用詞句'},
+            '幫助消化': {'reason': '通常可用詞句'}
+            # 可以從合規指南加入更多詞彙
+        }
+        
+        # 搜尋違法用字
+        for word, info in illegal_words.items():
+            if query.lower() in word.lower():
+                results.append({
+                    'word': word,
+                    'type': '違法用字',
+                    'reason': info['reason'],
+                    'alternative': info.get('alternative', '-')
+                })
+        
+        # 搜尋易生誤解詞彙
+        for word, info in misleading_words.items():
+            if query.lower() in word.lower():
+                results.append({
+                    'word': word,
+                    'type': '易生誤解詞彙',
+                    'reason': info['reason'],
+                    'alternative': info.get('alternative', '-')
+                })
+        
+        # 搜尋合法詞彙
+        for word, info in legal_words.items():
+            if query.lower() in word.lower():
+                results.append({
+                    'word': word,
+                    'type': '合法詞彙',
+                    'reason': info['reason'],
+                    'alternative': '-'
+                })
+    
+    return render_template('search.html', title='搜尋結果', active_tab='guidelines', query=query, results=results)
+
 @app.route('/about')
 def about():
     return render_template('about.html', title='關於我們', active_tab='about')
@@ -116,6 +189,3 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
-@app.route('/guidelines')
-def guidelines():
-    return render_template('guidelines.html', title='食品廣告合規指南', active_tab='guidelines')
