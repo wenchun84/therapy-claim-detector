@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .guidelines-content h2 {
+            margin-top: 30px;
+            color: #4a6da7;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .guidelines-content h3 {
+            margin-top: 20px;
+            color: #5a6b7e;
+        }
+        .notes {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #4a6da7;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/guidelines" class="{{ 'active' if active_tab == 'guidelines' else '' }}">合規指南</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
+        
+        <main>
+            <div class="content-box guidelines-content">
+                <h1>食品廣告合規指南：詞彙使用參考</h1>
+                
+                <p>根據《食品安全衛生管理法》第28條及衛生福利部食品藥物管理署的「食品標示宣傳或廣告涉及不實誇張易生誤解或醫療效能之認定基準準則」，食品標示、宣傳或廣告不得有不實、誇張或易生誤解的內容，且不得宣稱醫療效能。</p>
+                
+                <p>本指南旨在協助廠商、廣告製作者及內容創作者了解哪些詞彙在食品宣傳中屬於違法用字、需謹慎使用的詞彙，以及合法的替代表述方式。</p>
+                
+                <h2>一、明確違法用字（涉及醫療效能）</h2>
+                
+                <p>這類詞彙明確宣稱食品具有醫療效能，使用將違反食安法第28條第2項，可能導致高額罰款，甚至影響代言人。</p>
+                
+                <h3>1. 宣稱預防、改善、減輕、診斷或治療疾病</h3>
+                
+                <table>
+                    <tr>
+                        <th>違法用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>治療</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>改善過敏</td>
+                        <td>明示療效</td>
+                        <td>調整體質</td>
+                    </tr>
+                    <tr>
+                        <td>防止便秘</td>
+                        <td>明示便秘為病症</td>
+                        <td>使排便順暢</td>
+                    </tr>
+                    <tr>
+                        <td>降血壓</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>清血</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>調整內分泌</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>恢復視力</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>壯陽、強精</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>減輕過敏性皮膚病</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>治失眠</td>
+                        <td>明示療效</td>
+                        <td>幫助入睡</td>
+                    </tr>
+                    <tr>
+                        <td>防止貧血</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>改善血濁</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>防止更年期的提早</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>治療肌少症</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>逆轉肌肉萎縮</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>治療退化性關節炎</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+                
+                <h3>2. 宣稱產品對疾病及疾病症候群或症狀有效</h3>
+                
+                <table>
+                    <tr>
+                        <th>違法用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>消滯</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>降肝火</td>
+                        <td>明示療效</td>
+                        <td>退火、降火氣</td>
+                    </tr>
+                    <tr>
+                        <td>改善喉嚨發炎</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>祛痰止喘</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>消腫止痛</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>消除心律不整</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>解毒</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>改善更年期障礙</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>關節炎、關節退化</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>行走遲緩不便</td>
+                        <td>暗示疾病症狀</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>樓梯恐懼症</td>
+                        <td>暗示疾病症狀</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>肩頸脊椎痛不欲生</td>
+                        <td>暗示疾病症狀</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>清除血脂、毒素</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>溶解血栓、斑塊</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>逆轉硬化狹窄</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>恢復血管彈性</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>遠離重症及後遺症</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>根除心腦血管疾病</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+                
+                <h3>3. 宣稱減輕或降低導致疾病有關之體內成分</h3>
+                
+                <table>
+                    <tr>
+                        <th>違法用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>解肝毒</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>降肝脂</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>活化腦細胞</td>
+                        <td>明示療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>再生年輕細胞</td>
+                        <td>明示療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>減緩失智</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>減緩骨質流失</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>活化婦宮機能</td>
+                        <td>明示療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                </table>
+                
+                <h3>4. 涉及中藥材效能詞彙</h3>
+                
+                <table>
+                    <tr>
+                        <th>違法用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>補腎、溫腎、滋腎、固腎</td>
+                        <td>中藥材療效</td>
+                        <td>滋補強身</td>
+                    </tr>
+                    <tr>
+                        <td>健脾、補脾、益脾、溫脾</td>
+                        <td>中藥材療效</td>
+                        <td>調整體質</td>
+                    </tr>
+                    <tr>
+                        <td>和胃、養胃、補胃、益胃</td>
+                        <td>中藥材療效</td>
+                        <td>開胃</td>
+                    </tr>
+                    <tr>
+                        <td>養心、清心火、補心、寧心</td>
+                        <td>中藥材療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>清肺、宣肺、潤肺、傷肺</td>
+                        <td>中藥材療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>疏肝、養肝、瀉肝、鎮肝</td>
+                        <td>中藥材療效</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>澀腸、潤腸</td>
+                        <td>中藥材療效</td>
+                        <td>使排便順暢</td>
+                    </tr>
+                    <tr>
+                        <td>活血、化瘀</td>
+                        <td>中藥材療效</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                </table>
+                
+                <h3>5. 引用或摘錄出版品並述及醫療效能</h3>
+                
+                <table>
+                    <tr>
+                        <th>違法用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>「本草備要」記載：冬蟲夏草可止血化痰</td>
+                        <td>引用療效</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>「本草綱目」記載：黑豆可止痛</td>
+                        <td>引用療效</td>
+                        <td>「本草綱目」記載梅子氣味甘酸，可生津解渴（未述及醫藥效能）</td>
+                    </tr>
+                </table>
+                
+                <h2>二、易生誤解或誇張用字（不涉及醫療效能但仍違規）</h2>
+                
+                <p>這類詞彙雖未直接宣稱醫療效能，但容易讓消費者產生誤解，違反食安法第28條第1項。</p>
+                
+                <h3>1. 涉及生理功能的詞彙</h3>
+                
+                <table>
+                    <tr>
+                        <th>需謹慎用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>增強抵抗力</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>強化細胞功能</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>增智、補腦</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>增強記憶力</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>改善體質</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調整體質</td>
+                    </tr>
+                    <tr>
+                        <td>解酒</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>清除自由基</td>
+                        <td>誇張或易生誤解</td>
+                        <td>具抗氧化作用</td>
+                    </tr>
+                    <tr>
+                        <td>排毒素</td>
+                        <td>誇張或易生誤解</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>分解有害物質</td>
+                        <td>誇張或易生誤解</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>平胃氣</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調整體質</td>
+                    </tr>
+                    <tr>
+                        <td>防止口臭</td>
+                        <td>誇張或易生誤解</td>
+                        <td>使口氣芬芳</td>
+                    </tr>
+                    <tr>
+                        <td>激活全身長壽蛋白</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>增生膠原蛋白</td>
+                        <td>誇張或易生誤解</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>提升男性能力</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                </table>
+                
+                <h3>2. 涉及器官的詞彙</h3>
+                
+                <table>
+                    <tr>
+                        <th>需謹慎用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>保護眼睛</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                    <tr>
+                        <td>增加血管彈性</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                </table>
+                
+                <h3>3. 涉及改變身體外觀的詞彙</h3>
+                
+                <table>
+                    <tr>
+                        <th>需謹慎用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>豐胸</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>預防乳房下垂</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>減肥、瘦身</td>
+                        <td>誇張或易生誤解</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>塑身</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>增高</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>使頭髮烏黑</td>
+                        <td>誇張或易生誤解</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>延遲衰老、防止老化</td>
+                        <td>誇張或易生誤解</td>
+                        <td>青春美麗</td>
+                    </tr>
+                    <tr>
+                        <td>改善皺紋</td>
+                        <td>誇張或易生誤解</td>
+                        <td>養顏美容</td>
+                    </tr>
+                    <tr>
+                        <td>美白</td>
+                        <td>誇張或易生誤解</td>
+                        <td>養顏美容、光彩養顏</td>
+                    </tr>
+                    <tr>
+                        <td>肥肚跟馬鞍肉全都不見了</td>
+                        <td>誇張或易生誤解</td>
+                        <td>促進新陳代謝</td>
+                    </tr>
+                    <tr>
+                        <td>機能回春30歲</td>
+                        <td>誇張或易生誤解</td>
+                        <td>調節生理機能</td>
+                    </tr>
+                </table>
+                
+                <h3>4. 其他誇張表述</h3>
+                
+                <table>
+                    <tr>
+                        <th>需謹慎用字</th>
+                        <th>違規原因</th>
+                        <th>建議替代詞彙</th>
+                    </tr>
+                    <tr>
+                        <td>根除</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>完全消除</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>永久恢復</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>徹底解決</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>無副作用</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>百分百有效</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>立即見效</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>神奇療效</td>
+                        <td>過度誇張</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>醫生說我塞住的地方都通了</td>
+                        <td>暗示醫療效能</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+                
+                <h2>三、合法可使用的詞彙</h2>
+                
+                <p>這些詞彙被認定為通常可使用的詞句，不涉及醫療效能或誇張。</p>
+                
+                <h3>1. 通常可使用的詞句</h3>
+                
+                <table>
+                    <tr>
+                        <th>合法用字</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td>幫助牙齒骨骼正常發育</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>幫助消化</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>幫助維持消化道機能</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>改變細菌叢生態</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>使排便順暢</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>調整體質</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>調節生理機能</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>滋補強身</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>增強體力</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>精神旺盛</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>養顏美容</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>幫助入睡</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>營養補給</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>健康維持</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>青春美麗</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>產前產後或病後之補養</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>促進新陳代謝</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>清涼解渴</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>生津止渴</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>促進食慾</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>開胃</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                       <td>退火</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>降火氣</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>使口氣芬芳</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>促進唾液分泌</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>潤喉</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                    <tr>
+                        <td>光彩養顏</td>
+                        <td>通常可用詞句</td>
+                    </tr>
+                </table>
+                
+                <h3>2. 營養素可宣稱之生理功能詞句</h3>
+                
+                <p>營養素必須明確指出是該營養素的生理功能，例如「維生素C具抗氧化作用」而非「本產品具抗氧化作用」。</p>
+                
+                <table>
+                    <tr>
+                        <th>營養素</th>
+                        <th>可宣稱之生理功能例句</th>
+                    </tr>
+                    <tr>
+                        <td>維生素A</td>
+                        <td>有助於維持在暗處的視覺</td>
+                    </tr>
+                    <tr>
+                        <td>維生素C</td>
+                        <td>促進膠原蛋白的形成，有助於傷口癒合</td>
+                    </tr>
+                    <tr>
+                        <td>維生素C</td>
+                        <td>具抗氧化作用</td>
+                    </tr>
+                    <tr>
+                        <td>維生素D</td>
+                        <td>增進鈣吸收</td>
+                    </tr>
+                    <tr>
+                        <td>維生素E</td>
+                        <td>有助於減少自由基的產生</td>
+                    </tr>
+                    <tr>
+                        <td>鈣</td>
+                        <td>有助於維持骨骼與牙齒的正常發育及健康</td>
+                    </tr>
+                    <tr>
+                        <td>膳食纖維</td>
+                        <td>可促進腸道蠕動</td>
+                    </tr>
+                </table>
+                
+                <h2>四、重大違規案例參考（113年度10大違規食藥廣告）</h2>
+                
+                <table>
+                    <tr>
+                        <th>產品名稱</th>
+                        <th>廠商</th>
+                        <th>違規宣稱</th>
+                        <th>罰則</th>
+                    </tr>
+                    <tr>
+                        <td>A.H.A關捷挺固立</td>
+                        <td>樂微生醫國際有限公司</td>
+                        <td>治療肌少症，逆轉肌肉萎縮...治療退化性關節炎</td>
+                        <td>新臺幣1124萬元</td>
+                    </tr>
+                    <tr>
+                        <td>萬年堂全酵激酶EX</td>
+                        <td>樂微生醫國際有限公司</td>
+                        <td>1天清除血脂、毒素...3天溶解血栓、斑塊...根除心腦血管疾病</td>
+                        <td>新臺幣142萬元</td>
+                    </tr>
+                    <tr>
+                        <td>金沛兒蜂胎王純淨奇蹟膠囊</td>
+                        <td>聖施國際有限公司</td>
+                        <td>活化腦細胞、再生年輕細胞、提升記憶力、減緩失智...</td>
+                        <td>新臺幣116萬元</td>
+                    </tr>
+                    <tr>
+                        <td>PP石墨烯智能氣動塑崩系列</td>
+                        <td>壹伍壹拾數碼行銷有限公司</td>
+                        <td>肥肚跟馬鞍肉全都不見了...醫生說我塞住的地方都通了</td>
+                        <td>新臺幣292萬元</td>
+                    </tr>
+                </table>
+                
+                <h2>五、代言人連帶責任提醒</h2>
+                
+                <p>根據《食品安全衛生管理法》第28條第3項、第29條之1規定，食品廣告代言人若明知或可得而知廣告內容有不實、誇張或醫療效能之表現，仍為處理其消費者個人意見或表現時，也應負連帶責任。</p>
+                
+                <table>
+                    <tr>
+                        <th>案例</th>
+                        <th>代言人</th>
+                        <th>受罰金額</th>
+                    </tr>
+                    <tr>
+                        <td>A.H.A關捷挺固立</td>
+                        <td>郭子乾</td>
+                        <td>新臺幣216萬元</td>
+                    </tr>
+                    <tr>
+                        <td>其他產品</td>
+                        <td>廖峻、曾軒彥、黃西田、林美秀等</td>
+                        <td>新臺幣4萬至60萬元不等</td>
+                    </tr>
+                </table>
+                
+                <h2>六、判斷原則與法規依據</h2>
+                
+                <ol>
+                    <li><strong>食安法第28條第1項</strong>：食品標示、宣傳或廣告，不得有不實、誇張或易生誤解的內容</li>
+                    <li><strong>食安法第28條第2項</strong>：食品不得為醫療效能之標示、宣傳或廣告</li>
+                    <li><strong>食品標示宣傳或廣告涉及不實誇張易生誤解或醫療效能之認定基準準則</strong>：詳細規範了違規詞句的認定標準</li>
+                </ol>
+                
+                <div class="notes">
+                    <h3>注意事項：</h3>
+                    <ol>
+                        <li>本指南僅供參考，實際認定仍以衛生福利部食品藥物管理署之判定為準</li>
+                        <li>即使使用合法詞彙，若整體廣告內容暗示或引導消費者聯想到醫療效能，仍可能違法</li>
+                        <li>廣告整體呈現包括文字、圖片、影片、聲音等均納入綜合判斷</li>
+                        <li>若有疑慮，建議先諮詢法律專業人士或向食藥署確認</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療效用字檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
+</body>
+</html>
