@@ -93,3 +93,6 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
+@app.route('/guidelines')
+def guidelines():
+    return render_template('guidelines.html', title='食品廣告合規指南', active_tab='guidelines')
