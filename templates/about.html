@@ -1,50 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        function updateFileName() {
-            const fileInput = document.getElementById('file');
-            const fileNameDisplay = document.getElementById('fileName');
-            if(fileInput.files.length > 0) {
-                fileNameDisplay.textContent = "已選擇檔案: " + fileInput.files[0].name;
-            } else {
-                fileNameDisplay.textContent = "";
-            }
-        }
-    </script>
 </head>
 <body>
-    <header>
-    <nav>
-        <a href="/">首頁</a>
-        <a href="/about">關於我們</a>
-        <a href="/contact">聯繫我們</a>
-    </nav>
-</header>
-    <main>
-        <h1>上傳文件進行檢測</h1>
-        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
         
-        {% if error %}
-        <div class="error-message">
-            <p>{{ error }}</p>
-        </div>
-        {% endif %}
-        
-        <form method="post" enctype="multipart/form-data">
-            <div class="file-upload">
-                <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
-                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
-                <p id="fileName" class="file-name-display"></p>
+        <main>
+            <div class="content-box">
+                <h1>關於我們</h1>
+                
+                <p>療癒聲明檢測器是一個專為保健食品、營養補充品及相關產業設計的合規輔助工具，幫助廠商確保產品宣傳內容符合法規要求。</p>
+                
+                <h2>我們的使命</h2>
+                <p>協助業者提前審視療癒相關聲明的合法性，避免觸犯《食品安全衛生管理法》等相關法規，同時保護消費者權益，確保市場資訊透明與正確。</p>
+                
+                <h2>法規依據</h2>
+                <p>本工具檢測標準主要基於以下法規：</p>
+                <ul>
+                    <li>《食品安全衛生管理法》第28條</li>
+                    <li>《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》</li>
+                    <li>《健康食品管理法》相關規定</li>
+                </ul>
+                
+                <h2>團隊成員</h2>
+                <p>我們的團隊由食品法規專家、資料科學家和軟體工程師組成，致力於提供最準確、最實用的合規檢測服務。</p>
             </div>
-            <button type="submit">上傳並分析</button>
-        </form>
-    </main>
-    <footer>
-        <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
-    </footer>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
 </body>
 </html>
