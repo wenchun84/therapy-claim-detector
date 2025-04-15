@@ -35,33 +35,33 @@
                 {% endif %}
                 
                 <div class="result-container">
-                    <p class="result-title">檢測結果：</p>
-                    <p>{{ result }}</p>
-                    
-                    {% if found_violations %}
-                    <div class="highlight-words">
-                        <h3>發現的可能違規詞彙：</h3>
-                        <ul>
-                            {% for violation in found_violations %}
-                            <li><span class="warning">{{ violation }}</span> - 
-                                {% if violation == '排毒' or violation == '排除體內毒素' %}
-                                宣稱排毒效果，違反食品廣告規範
-                                {% elif violation == '預防' or violation == '遠離疾病困擾' %}
-                                暗示預防疾病，涉及醫療效能
-                                {% else %}
-                                暗示醫療效果，違反食品廣告規範
-                                {% endif %}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    
-                    <div class="recommendation">
-                        <h3>建議修改：</h3>
-                        <p>避免使用暗示醫療效果的詞彙，如「排毒」、「預防疾病」等。可改為描述產品成分、口感或一般特性。</p>
-                    </div>
-                    {% endif %}
-                </div>
+    <p class="result-title">檢測結果：</p>
+    <p>{{ result }}</p>
+    
+    {% if found_violations and found_violations|length > 0 %}
+    <div class="highlight-words">
+        <h3>發現的可能違規詞彙：</h3>
+        <ul>
+            {% for violation in found_violations %}
+            <li><span class="warning">{{ violation }}</span> - 
+                {% if violation == '排毒' or violation == '排除體內毒素' %}
+                宣稱排毒效果，違反食品廣告規範
+                {% elif violation == '預防' or violation == '遠離疾病困擾' %}
+                暗示預防疾病，涉及醫療效能
+                {% else %}
+                暗示醫療效果，違反食品廣告規範
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="recommendation">
+        <h3>建議修改：</h3>
+        <p>避免使用暗示醫療效果的詞彙，如「排毒」、「預防疾病」等。可改為描述產品成分、口感或一般特性。</p>
+    </div>
+    {% endif %}
+</div>
                 
                 <a href="/" class="check-button">返回檢測頁面</a>
             </div>
