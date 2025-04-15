@@ -15,7 +15,9 @@ def index():
             return render_template('index.html', title='文章檢測', active_tab='article', error='請輸入文字或上傳文件')
         
         # 處理文字輸入
-        if text_input:
+        if condition:
+    # This line must be indented (4 spaces)
+    do_something()
             # 違規詞彙列表 - 擴充自合規指南
 violation_words = [
     # 明確違法用字（涉及醫療效能）
