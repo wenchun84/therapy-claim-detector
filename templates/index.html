@@ -1,70 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        function updateFileName() {
-            const fileInput = document.getElementById('file');
-            const fileNameDisplay = document.getElementById('fileName');
-            if(fileInput.files.length > 0) {
-                fileNameDisplay.textContent = "已選擇檔案: " + fileInput.files[0].name;
-            } else {
-                fileNameDisplay.textContent = "";
-            }
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="/">首頁</a>
-            <a href="/about">關於我們</a>
-            <a href="/contact">聯繫我們</a>
-        </nav>
-    </header>
-    <main>
-        <h1>聲明檢測</h1>
-        <p>請輸入您想要檢測的療癒聲明文字或上傳文件。</p>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
         
-        {% if error %}
-        <div class="error-message">
-            <p>{{ error }}</p>
-        </div>
-        {% endif %}
+        <main>
+            <div class="content-box">
+                <h1>文章檢測</h1>
+                
+                <p>請輸入要檢測的文章內容：</p>
+                
+                {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+                
+                <form method="post" enctype="multipart/form-data">
+                    <textarea name="text_input" placeholder="例如：這款保健食品可以改善過敏體質，有效降低血壓，還能排除體內毒素，讓您遠離疾病困擾。"></textarea>
+                    
+                    <div class="separator">或者</div>
+                    
+                    <div class="file-upload">
+                        <p>點擊或拖放文件到這裡</p>
+                        <input type="file" name="file" accept=".pdf,.doc,.docx,.txt">
+                    </div>
+                    
+                    <button type="submit" class="check-button">檢測文章</button>
+                </form>
+            </div>
+        </main>
         
-        <form method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="text_input">直接輸入或貼上文字：</label>
-                <textarea id="text_input" name="text_input" rows="10" placeholder="請在此輸入您的療癒聲明文字..."></textarea>
-            </div>
-            
-            <div class="separator">
-                <span>或者</span>
-            </div>
-            
-            <div class="file-upload">
-                <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
-                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
-                <p id="fileName" class="file-name-display"></p>
-            </div>
-            <button type="submit" class="analyze-button">分析</button>
-        </form>
-        
-        <div class="features">
-            <div class="feature">
-                <h2>快速分析</h2>
-                <p>我們的系統能快速分析您的療癒聲明，檢測可能違反法規的內容。</p>
-            </div>
-            <div class="feature">
-                <h2>專業建議</h2>
-                <p>獲取針對您聲明的專業建議和改進意見，避免潛在的法規風險。</p>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
-    </footer>
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
 </body>
 </html>
