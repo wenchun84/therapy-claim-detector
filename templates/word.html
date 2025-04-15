@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
+        
+        <main>
+            <div class="content-box">
+                <h1>單詞檢測</h1>
+                
+                <p>請輸入要檢測的單詞或詞組：</p>
+                
+                <form method="post" action="/word">
+                    <input type="text" name="keyword" placeholder="例如：排毒、治癒、預防疾病" class="word-input">
+                    <button type="submit" class="check-button">檢測單詞</button>
+                </form>
+                
+                <div class="keyword-examples">
+                    <h3>常見違規詞彙範例：</h3>
+                    <div class="keyword-list">
+                        <span class="keyword">治療</span>
+                        <span class="keyword">預防</span>
+                        <span class="keyword">治癒</span>
+                        <span class="keyword">排毒</span>
+                        <span class="keyword">醫治</span>
+                        <span class="keyword">根治</span>
+                        <span class="keyword">防治</span>
+                        <span class="keyword">醫療效果</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
+</body>
+</html>
