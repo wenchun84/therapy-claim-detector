@@ -26,8 +26,8 @@
         </nav>
     </header>
     <main>
-        <h1>上傳文件進行檢測</h1>
-        <p>請上傳您想要檢測的療癒聲明文件。我們接受PDF、DOC、DOCX和TXT格式。</p>
+        <h1>聲明檢測</h1>
+        <p>請輸入您想要檢測的療癒聲明文字或上傳文件。</p>
         
         {% if error %}
         <div class="error-message">
@@ -36,12 +36,21 @@
         {% endif %}
         
         <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="text_input">直接輸入或貼上文字：</label>
+                <textarea id="text_input" name="text_input" rows="10" placeholder="請在此輸入您的療癒聲明文字..."></textarea>
+            </div>
+            
+            <div class="separator">
+                <span>或者</span>
+            </div>
+            
             <div class="file-upload">
                 <label class="file-upload-label">點擊此處選擇檔案或拖放檔案到這裡</label>
                 <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt" onchange="updateFileName()">
                 <p id="fileName" class="file-name-display"></p>
             </div>
-            <button type="submit">上傳並分析</button>
+            <button type="submit">分析</button>
         </form>
     </main>
     <footer>
