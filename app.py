@@ -28,11 +28,11 @@ def index():
                     found_violations.append(word)
             
             if found_violations:
-                result = f"檢測結果：您的聲明文字中發現潛在違規內容。按照《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》，以下詞彙可能暗示醫療效果：{', '.join(found_violations)}"
-            else:
-                result = "檢測結果：您的聲明文字未發現明顯違規內容。但請注意，即使未使用明確的醫療用語，某些表述方式仍可能因整體語境而被視為暗示醫療效果。建議謹慎使用療效相關描述。"
-            
-            return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input)
+    result = f"檢測結果：您的聲明文字中發現潛在違規內容。按照《食品標示宣傳廣告及不實標示易生誤解或具有虛偽誇張內容之認定基準》，以下詞彙可能暗示醫療效果：{', '.join(found_violations)}"
+    return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input, found_violations=found_violations)
+else:
+    result = "檢測結果：您的聲明文字未發現明顯違規內容。但請注意，即使未使用明確的醫療用語，某些表述方式仍可能因整體語境而被視為暗示醫療效果。建議謹慎使用療效相關描述。"
+    return render_template('result.html', title='檢測結果', active_tab='article', result=result, content=text_input, found_violations=None)
         
         # 处理文件上传
         if file:
