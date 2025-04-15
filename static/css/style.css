@@ -211,3 +211,52 @@ footer {
 
 .file-upload:hover {
     background-color: #f1f3f6;
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.separator {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.separator:before, .separator:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 30px);
+    height: 1px;
+    background-color: #ddd;
+}
+
+.separator:before {
+    left: 0;
+}
+
+.separator:after {
+    right: 0;
+}
+
+.separator span {
+    display: inline-block;
+    padding: 0 15px;
+    background-color: white;
+    position: relative;
+    color: #888;
+}
+
+.content-box {
+    background-color: #f5f7fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid #ccc;
+    white-space: pre-wrap;
+}
