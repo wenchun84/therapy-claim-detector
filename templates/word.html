@@ -25,10 +25,23 @@
                 
                 <p>請輸入要檢測的單詞或詞組：</p>
                 
+                {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+                
                 <form method="post" action="/word">
-                    <input type="text" name="keyword" placeholder="例如：排毒、治癒、預防疾病" class="word-input">
+                    <input type="text" name="keyword" placeholder="例如：排毒、治癒、預防疾病" class="word-input" value="{{ keyword if keyword }}">
                     <button type="submit" class="check-button">檢測單詞</button>
                 </form>
+                
+                {% if result %}
+                <div class="result-container" style="margin-top: 20px;">
+                    <h3>檢測結果：</h3>
+                    <p>{{ result }}</p>
+                </div>
+                {% endif %}
                 
                 <div class="keyword-examples">
                     <h3>常見違規詞彙範例：</h3>
