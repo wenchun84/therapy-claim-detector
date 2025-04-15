@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
+        
+        <main>
+            <div class="content-box">
+                <h1>違規案例</h1>
+                
+                <p>以下是一些常見的療癒聲明違規案例，供您參考：</p>
+                
+                <div class="example-list">
+                    <div class="example-item">
+                        <h3>案例 1：某膠原蛋白飲品</h3>
+                        <div class="example-content">
+                            <p class="violation">違規宣稱：「本產品能幫助改善關節炎症狀，減輕疼痛，並能預防骨質疏鬆症。」</p>
+                            <p class="correction">正確表達：「本產品含有豐富的膠原蛋白，為人體所需的重要營養素，可作為均衡飲食的補充。」</p>
+                            <p class="reason">違規原因：宣稱具有疾病預防、治療功效，違反《食品安全衛生管理法》第28條規定。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-item">
+                        <h3>案例 2：某草本茶飲</h3>
+                        <div class="example-content">
+                            <p class="violation">違規宣稱：「有效排除體內毒素，淨化血液，提高免疫力，遠離感冒和流感。」</p>
+                            <p class="correction">正確表達：「本草本茶飲選用天然草本植物，口感清爽宜人，可作為日常飲品選擇。」</p>
+                            <p class="reason">違規原因：宣稱能排毒、淨化血液及預防疾病，涉及醫療效能。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-item">
+                        <h3>案例 3：某益生菌產品</h3>
+                        <div class="example-content">
+                            <p class="violation">違規宣稱：「能治療腸胃疾病，改善腸漏症，修復受損腸道，根治便秘問題。」</p>
+                            <p class="correction">正確表達：「本產品含有多種益生菌，有助於維持腸道菌群平衡。」</p>
+                            <p class="reason">違規原因：宣稱具有治療、根治疾病功效，違反食品廣告規範。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
+</body>
+</html>
