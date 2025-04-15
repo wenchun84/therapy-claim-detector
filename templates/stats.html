@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul class="tabs">
+                <li><a href="/" class="{{ 'active' if active_tab == 'article' else '' }}">文章檢測</a></li>
+                <li><a href="/word" class="{{ 'active' if active_tab == 'word' else '' }}">單詞檢測</a></li>
+                <li><a href="/stats" class="{{ 'active' if active_tab == 'stats' else '' }}">違規統計</a></li>
+                <li><a href="/examples" class="{{ 'active' if active_tab == 'examples' else '' }}">違規案例</a></li>
+                <li><a href="/about" class="{{ 'active' if active_tab == 'about' else '' }}">關於我們</a></li>
+                <li><a href="/contact" class="{{ 'active' if active_tab == 'contact' else '' }}">聯繫我們</a></li>
+            </ul>
+        </header>
+        
+        <main>
+            <div class="content-box">
+                <h1>違規統計</h1>
+                
+                <p>以下是療癒聲明違規常見類型的統計數據：</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3>最常見違規詞彙</h3>
+                        <ul>
+                            <li>治療 (占違規案例的 32%)</li>
+                            <li>預防 (占違規案例的 28%)</li>
+                            <li>排毒 (占違規案例的 15%)</li>
+                            <li>根治 (占違規案例的 12%)</li>
+                            <li>醫治 (占違規案例的 8%)</li>
+                            <li>其他 (占違規案例的 5%)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <h3>違規案件產品類別</h3>
+                        <ul>
+                            <li>保健食品 (45%)</li>
+                            <li>中草藥製品 (22%)</li>
+                            <li>食品補充劑 (18%)</li>
+                            <li>機能性飲品 (10%)</li>
+                            <li>其他 (5%)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p class="stats-note">資料來源：食藥署2022-2024年違規廣告統計</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 療癒聲明檢測器 | 專業、可靠的法規合規檢測工具</p>
+        </footer>
+    </div>
+</body>
+</html>
